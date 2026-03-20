@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IEEE-754 Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+
+            /* 🔥 Gradient Background */
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 36px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 15px;
+            width: 60%;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        input {
+            padding: 10px;
+            width: 60%;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+
+            /* Gradient button */
+            background: linear-gradient(45deg, #ff7e5f, #feb47b);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .result-box {
+            text-align: left;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-top: 15px;
+            color: #ffd369;
+        }
+
+        ul {
+            text-align: left;
+        }
+
+        .highlight {
+            color: #00ffcc;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>✨ IEEE-754 Converter</h1>
+
+    <div class="container">
+        <form method="POST">
+            <input type="text" name="number" placeholder="Enter number" required>
+            <button type="submit">Convert</button>
+        </form>
+
+        {% if result %}
+            {% if result.error %}
+                <p>{{ result.error }}</p>
+            {% else %}
+
+            <div class="result-box">
+
+                <div class="section-title">📊 Result</div>
+                <p><b>Number:</b> {{ result.number }}</p>
+                <p><b>Binary:</b> <span class="highlight">{{ result.bits }}</span></p>
+                <p><b>Hex:</b> {{ result.hex }}</p>
+
+                <div class="section-title">🧩 Breakdown</div>
+                <p>Sign: {{ result.sign }}</p>
+                <p>Exponent: {{ result.exponent }}</p>
+                <p>Mantissa: {{ result.mantissa }}</p>
+
+                <div class="section-title">🧠 Step-by-Step</div>
+                <ul>
+                    {% for step in steps %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+            {% endif %}
+        {% endif %}
+    </div>
+
+</body>
+</html>
